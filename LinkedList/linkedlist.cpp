@@ -2,8 +2,8 @@
 #include <iostream>
 #include "LL_Func.h"
 using namespace std;
-
-void del_dup_nodes(Node *root)
+/*
+void del_dup_nodes(Node<T> *root)
 {
     if(root==NULL)
     {
@@ -39,16 +39,14 @@ void del_dup_nodes(Node *root)
     }
 
 }
-
+*/
 int main()
 {
-   Node *root=createList();
- //print the original LL
-print_LL(root);
- //delete duplicate Nodes
- //cout<<"deleting duplicates:\n\n";
- del_dup_nodes(root);
- //print altered LL
- print_LL(root);
+   SinglyLinkList<int> *root=new SinglyLinkList<int>;
+  root->createList();
+    root->print_LL();
+    cout<<"reverse a LL\n";
+    root->reverse();
+    root->print_LL();
    return 0;
 }

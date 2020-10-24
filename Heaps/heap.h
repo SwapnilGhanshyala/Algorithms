@@ -4,12 +4,12 @@
 using namespace std;
 
 template <typename T>
-struct MaxHeap
+struct MaxHeap_Array
 {
     unsigned int last;
-    unsigned int size;
+    //unsigned int size;
     vector<T> A;  
-    T getMax()
+    T front()
     {
         if(A.empty())
         {
@@ -17,6 +17,11 @@ struct MaxHeap
             return -999;
         }
         return A[0]; 
+    }
+    void pop_front()
+    {
+        A.at(0)=-999;
+        heapify(0);
     }
     void insert(T value)
     {
@@ -67,22 +72,10 @@ struct MaxHeap
         {
             unsigned int lpos=position*2+1;
             unsigned int rpos=position*2+2;
-            T lchild;
-            T rchild;
-            if(lpos<=last)
-                lchild=A.at(lpos);
-            else
-                lchild=(T)-999;
-            if(rpos<=last)
-                rchild=A.at(rpos);
-            else
-                rchild=-999;
-            if(lchild==rchild && lchild==-999)
-                return;
+            T lchild=A.at(lpos);
+            T rchild=A.at(rpos);
             if(A.at(position)> lchild && A.at(position)>rchild)
-            {
-                return ;
-            }
+                return;
             if(lchild>rchild)
             {
                 T value=A.at(position);
@@ -160,6 +153,7 @@ struct MaxHeap
         cout<<endl;
         buildHeap(A,l);
     }
+    //recieves a sorted Array: ascending
     void buildHeap(vector<T> V,unsigned int l)
     {
         int k=l;
@@ -168,4 +162,36 @@ struct MaxHeap
             A.at(i)=V.at(k--);
         }
     }
+};
+
+
+template <typename T>
+struct BinaryTreeNode
+{
+BinaryTreeNode<T> lchild;
+BinaryTreeNode<T> rchild;
+T data;
+BinaryTreeNode<T> parent;
+} ;
+
+template <typename T>
+using Hnode= BinaryTreeNode<T>*;
+
+template <typename T>
+struct MaxHeap_BinaryTree
+{
+Hnode start;
+void insert(T value)
+{
+    if(start==NULL)
+    {
+        start=new BinaryTeeNode<T>;
+        start->lchild=NULL;
+        start->rchild=NULL;
+        start->data=value;
+        start->parent=NULL;
+        return;
+    }
+    
+}
 };
